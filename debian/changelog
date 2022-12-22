@@ -1,0 +1,149 @@
+python-coverage-test-runner (1.13.1-4) unstable; urgency=medium
+
+  * QA upload.
+  * Using new DH level format.Consequently:
+      - debian/compat: removed.
+      - debian/control: changed from 'debhelper >= 9'to
+        'debhelper-compat = 12' in Build-Depends field.
+  * debian/control:
+      - Added 'Rules-Requires-Root: no' in source stanza.
+      - Bumped Standards-Version to 4.5.0.
+  * debian/copyright:
+      - Added an email address to upstream.
+      - Added the block debian/*.
+
+ -- Jair Reis <jmsrdebian@protonmail.com>  Sun, 26 Apr 2020 13:10:00 -0300
+
+python-coverage-test-runner (1.13.1-3) unstable; urgency=medium
+
+  * QA upload.
+  * Drop python2 support; Closes: #937666
+
+ -- Sandro Tosi <morph@debian.org>  Fri, 29 Nov 2019 22:44:36 -0500
+
+python-coverage-test-runner (1.13.1-2) unstable; urgency=medium
+
+  * Orphaning due to retirement.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 18 Nov 2018 23:26:08 +0200
+
+python-coverage-test-runner (1.13.1-1) unstable; urgency=medium
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 05 Jul 2017 17:30:53 +0300
+
+python-coverage-test-runner (1.13-1) unstable; urgency=low
+
+  * New upstream version.
+  * debian/control: Raise Python dependency to 2.7 or later.
+  * debian/control: Raise Standards-Version to 4.0.0. No other changes needed.
+  * debian/control: Raise dependency on debhelper to 9 or later.
+  * Added Python3 support to packaging.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 05 Jul 2017 17:06:49 +0300
+
+python-coverage-test-runner (1.11-1) unstable; urgency=low
+
+  * New upstream version.
+  * debian/control: Move Homepage: to source stanza.
+  * debian/control: Update Standards-Version to 3.9.5. No further
+    changes required.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 25 Oct 2015 13:17:24 +0200
+
+python-coverage-test-runner (1.10-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 17 Apr 2013 14:26:33 +0100
+
+python-coverage-test-runner (1.9-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 23 Sep 2012 21:50:19 +0100
+
+python-coverage-test-runner (1.8-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Thu, 19 Jan 2012 11:27:56 +0000
+
+python-coverage-test-runner (1.7.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 04 Sep 2011 20:09:01 +0100
+
+python-coverage-test-runner (1.7-1) unstable; urgency=low
+
+  * New upstream version.
+  * Update packaging to use dh_python2.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 04 Sep 2011 19:49:32 +0100
+
+python-coverage-test-runner (1.6-1) unstable; urgency=low
+
+  * New upstream version.
+    - license change to GPL3+
+    - tweaks to documentation (README)
+  * Re-uploaded to Debian. (Closes: #628016)
+  * debian/copyright: Updated to reflect reality (GPL3+, not GPL2+),
+    and converted to DEP5.
+  * debian/control:
+    - Standards-Version bumped to 3.9.2 (no other changes required).
+    - Add python-coverage to Build-Depends.
+    - Add X-Python-Version header.
+    - Add Homepage.
+  * debian/source/format: Use 3.0 (quilt).
+
+ -- Lars Wirzenius <liw@liw.fi>  Thu, 26 May 2011 13:47:06 +0100
+
+python-coverage-test-runner (1.5) squeeze; urgency=low
+
+  * New upstream release
+
+ -- Lars Wirzenius <liw@liw.fi>  Fri, 18 Feb 2011 22:33:20 +0000
+
+python-coverage-test-runner (1.4.1) squeeze; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Mon, 05 Apr 2010 15:52:00 +1200
+
+python-coverage-test-runner (1.3) karmic; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sun, 14 Feb 2010 12:23:11 +1300
+
+python-coverage-test-runner (1.2) karmic; urgency=low
+
+  * New upstream version.
+
+ -- Lars Wirzenius <liw@liw.fi>  Wed, 30 Sep 2009 11:41:11 +0300
+
+python-coverage-test-runner (1.1-1) unstable; urgency=low
+
+  * New upstream version.
+  * debian/control: Change Section: to python to match the Debian override
+    file.
+  * debian/control: Update Maintainer: to use my current e-mail address.
+  * debian/control: Bump Standards-Version. No other changes required.
+
+ -- Lars Wirzenius <liw@liw.fi>  Sat, 12 Jul 2008 16:16:11 +0300
+
+python-coverage-test-runner (1.0-2) unreleased; urgency=low
+
+  * debian/copyright: Fixed wording to point out explicitly that version
+    two or later of the GPL is the license. Thanks to Joerg Jaspert for
+    pointing it out.
+
+ -- Lars Wirzenius <liw@iki.fi>  Sun, 30 Dec 2007 00:15:57 +0200
+
+python-coverage-test-runner (1.0-1) unstable; urgency=low
+
+  * First public version. (Closes: #456443)
+
+ -- Lars Wirzenius <liw@iki.fi>  Sat, 15 Dec 2007 23:05:47 +0200

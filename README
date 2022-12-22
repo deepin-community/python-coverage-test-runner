@@ -1,0 +1,174 @@
+CoverageTestRunner
+==================
+
+The Python standard library module `unittest` aids in implementing and running
+unit tests. The `coverage.py` module (not in the standard library) measures
+which parts of a program are executed. A proper unit test suite will
+execute all parts of a program. `CoverageTestRunner` uses `coverage.py` to
+run test suites implemented with `unittest`, and fails the tests if they
+do not test the entire program.
+
+`CoverageTestRunner` makes some assumptions, the most important is
+that the test suite is written so that each module corresponds to a test
+module, and that test module should execute everything in the module.
+If there is a code module `foo.py`, then it must be fully tested by
+`foo_tests.py`.
+
+Ideally, we would test each class and its corresponding test suite, but
+unfortunately `coverage.py` only allows module granularity. It also only
+measures at the statement level. This is, however, typically better
+than can be achieved without any measurement tools.
+
+
+Example
+-------
+
+Assume a Python module in `foo.py`, and its test suite in `foo_tests.py`
+in the same directory.
+Then running the test suite using `CoverageTestRunner` can be very simple:
+
+    python -m CoverageTestRunner
+
+`CoverageTestRunner` scans the current 
+directory and its subdirectories for test modules with corresponding
+code modules, based on filenames, and then executes them pairwise.
+
+If you have a more complicated setup, you can pair the code and test
+modules manually, using a wrapper script such as follows:
+
+    from CoverageTestRunner import CoverageTestRunner
+    
+    r = CoverageTestRunner()
+    r.add_pair("code/foo.py", "tests/foo.py")
+    r.run()
+
+
+Output
+------
+
+`CoverageTestRunner` writes its output to the standard output, and for
+a successful run it looks like this:
+
+    Running test 2/2: testTrue (foo_tests.FooTests) 
+    
+    OK
+    Time: 0.0 s
+
+An unsuccessful run might look like this (shortened for space reasons):
+
+    Running test 226/226: test (configTests.WriteDefaultConfigTests)        
+    
+    FAILED
+    
+    ERROR: testEmptyFile (ioTests.FileContentsTests)
+    Traceback (most recent call last):
+      File "unittests/ioTests.py", line 228, in testEmptyFile
+        id = obnam.io.create_file_contents_object(self.context, filename)
+      File "/home/liw/Braawi/obnam/new-storage/obnam/io.py", line 240, in create_file_contents_object
+        stdout=subprocess.PIPE)
+      File "subprocess.py", line 593, in __init__
+        errread, errwrite)
+      File "subprocess.py", line 1135, in _execute_child
+        raise child_exception
+    OSError: [Errno 2] No such file or directory
+
+    Statements missed by per-module tests:
+      Module                                                 Missed statements
+      /home/liw/Braawi/obnam/new-storage/obnam/cfgfile.py    70, 303
+      /home/liw/Braawi/obnam/new-storage/obnam/cmp.py        155
+      /home/liw/Braawi/obnam/new-storage/obnam/config.py     234-237
+      /home/liw/Braawi/obnam/new-storage/obnam/filelist.py   88
+      /home/liw/Braawi/obnam/new-storage/obnam/format.py     74, 97
+    
+    1 failures, 3 errors
+    Time: 5.4 s
+
+In this case, after the line with `FAILED` comes a list of all the
+failed tests, with some indication of why they failed, complete with
+Python stack traces. Additionally, if some parts of the code were not
+executed during the tests, a list of files and statement numbers is
+included in the output.
+
+
+Excluding some statements from the coverage analysis
+----------------------------------------------------
+
+Use `# pragma: no cover` to exclude some statements from being included
+in the coverage analysis. The line with that comment is excluded. If
+the line is an `if`, `while`, `def`, or similar, with a body, the body
+is also excluded. For example:
+
+    if always_true_during_testing:
+        print foo
+    else: # pragma: no cover
+        print bar
+        
+The last two lines of codes are excluded from coverage analysis even
+if the test suite does not execute them.
+
+You should only use this after thorough consideration.
+
+
+Excluding whole modules
+-----------------------
+
+Sometimes there are code modules that should not have test modules.
+For example, `setup.py`. You can use the `--ignore-missing` option
+to ignore all such problem, or `--ignore-missing-from=FILE` to
+list excluded modules explicitly.
+
+By default, the `setup.py` module is automatically excluded. However,
+if you list any modules explicitly, you should also list `setup.py`.
+
+
+Your tests are too slow
+-----------------------
+
+`CoverageTestRunner` keeps track of how long each test takes. If the total
+run time of the tests is more than ten seconds, even if all tests pass,
+it then prints out a list of the slowest tests. This is useful for projects
+whose test suites should run quickly so that developers don't mind running
+them all the time.
+
+This is obviously a bad thing for projects with large test suites. If it
+bothers you, please ask me, and I'll provide a way to disable it, or to
+set the time limit.
+
+
+Contacts
+--------
+
+Python's `unittest` is part of the standard library, and was (originally?)
+written by Steve Purcell. `coverage.py` was originally written by Gareth
+Rees and is now maintained by Net Batchelder. Its home page is at
+
+    http://www.nedbatchelder.com/code/modules/coverage.html
+
+CoverageTestRunner was written by Lars Wirzenius (`liw@liw.fi`). 
+The home page is at
+
+    http://liw.fi/coverage-test-runner/
+
+I welcome any feedback you may have.
+
+
+License
+--------
+
+Copyright 2007-2013  Lars Wirzenius <liw@liw.fi>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+=*= License: GPL-3+ =*=
+

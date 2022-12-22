@@ -1,0 +1,100 @@
+NEWS about CoverageTestRunner
+=============================
+
+Version 1.13.1, released 2017-07-05
+----------------------------------
+
+* Fix project name in setup.py to match the Debian source package
+  name.
+
+Version 1.13, released 2017-07-05
+---------------------------------
+
+* Added Python3 support to the Debian packaging.
+
+Version 1.11, released 2015-10-25
+--------------------------------
+
+* Debian packaging changes.
+
+Version 1.10, released 2013-04-17
+--------------------------------
+
+* New release to trigger builds for all relevant targets.
+* Copyright license summary markup added.
+
+Version 1.9, released 2012-09-23
+--------------------------------
+
+* Home page address updated.
+
+Version 1.8, released 2012-01-19
+--------------------------------
+
+* Progress reporting is now disabled when output does not go to a terminal.
+  This will make build logs prettier.
+* `logging` output is now disabled when unit tests are run. This means that
+  individual projects no longer need to hide the output themselves.
+
+Version 1.7.1, released 2011-09-04
+--------------------------------
+
+* Bug fix: normalize all relevant paths, when checking for ignored modules.
+
+Version 1.7, released 2011-09-04
+--------------------------------
+
+* When running "python -m CoverageTestRunner", user may now specify a list
+  of directories to scan for tests, rather than always scanning the current
+  working directory.
+* Pathnames in the file specified with `--ignore-missing-from=FILE` are
+  now normalized, so that the user does not need to specify `./setup.py`
+  and can say `setup.py` instead.
+
+Version 1.6, released 2011-06-03
+--------------------------------
+
+* License change to GPL version 3 or later.
+* Debian packaging updated for upload to Debian.
+* `README` markup fixes and other minor updates.
+* `setup.py` fixed up so it is suitable for PyPI use.
+
+Version 1.5, released 2011-02-18
+--------------------------------
+
+* Report number of excluded modules.
+* Ignore setup.py by default.
+
+Version 1.4.1, released 2010-06-07
+--------------------------------
+
+* Allow use of profiling (via cProfile), by setting 
+  COVERAGE_TEST_RUNNER_PROFILE environment variable. This will let you
+  find out why the test suite is slow.
+
+
+Version 1.3, released 2009-11-18
+--------------------------------
+
+* Threshold for when slow test timings are reported is now user settable
+  via the COVERAGE_TEST_RUNNER environment variable.
+
+
+Version 1.2, released 2009-11-18
+--------------------------------
+
+* Filenames are no longer prefixed by path to current directory.
+
+* Number of excluded statements is reported.
+
+* Modules without test modules are reported.
+
+* .deb packaging included in upstream source.
+
+* Option --ignore-missing-from added.
+
+
+Version 1.1, released 2008-05-18
+--------------------------------
+
+Added support for '#pragma: no cover'.

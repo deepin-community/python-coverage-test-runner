@@ -1,0 +1,20 @@
+Source: python-coverage-test-runner
+Section: python
+Priority: optional
+Maintainer: Debian QA Group <packages@qa.debian.org>
+Build-Depends: debhelper-compat (= 12),
+               dh-python,
+               python3-all,
+               python3-coverage
+Standards-Version: 4.5.0
+Rules-Requires-Root: no
+Homepage: http://liw.fi/coverage-test-runner/
+
+Package: python3-coverage-test-runner
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends}, python3-coverage
+Description: fail Python program unit tests unless they test everything
+ This package contains the Python module CoverageTestRunner, which runs
+ unit tests implemented using the unittest module in the Python standard
+ library. It runs them using coverage.py (in the python-coverage package)
+ and fails the test if all statements are not covered.

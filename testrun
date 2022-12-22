@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+python CoverageTestRunner.py subdir --ignore-missing-from=test-excluded
