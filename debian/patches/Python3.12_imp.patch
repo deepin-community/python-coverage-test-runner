@@ -1,0 +1,49 @@
+Description: Replace deprecated module imp by importlib
+             This patch has some issues discussed on the DPT mailing list
+               https://lists.debian.org/debian-python/2024/02/msg00044.html
+             Thus it is deactivated and python3-zombie-imp is used instead
+Bug-Debian: https://bugs.debian.org/1058112
+Author: Andreas Tille <tille@debian.org>
+Last-Update: Thu, 22 Feb 2024 11:34:00 +0100
+Forwarded: No upstream repository any more
+
+--- a/CoverageTestRunner.py
++++ b/CoverageTestRunner.py
+@@ -19,7 +19,8 @@ import coverage
+ import unittest
+ import optparse
+ import os
+-import imp
++import importlib
++import importlib.machinery
+ import sys
+ import time
+ import logging
+@@ -154,12 +155,12 @@ class CoverageTestRunner:
+                     self.add_excluded_module(filename)
+ 
+     def _load_module_from_pathname(self, pathname):
+-        for tuple in imp.get_suffixes():
+-            suffix, mode, type = tuple
+-            if pathname.endswith(suffix):
+-                name = os.path.basename(pathname[:-len(suffix)])
+-                f = open(pathname, mode)
+-                return imp.load_module(name, f, pathname, tuple)
++        name = os.path.basename(pathname).split('.')[0]
++        loader = importlib.machinery.SourceFileLoader(name, pathname)
++        spec = importlib.util.spec_from_loader(name, loader)
++        module = importlib.util.module_from_spec(spec)
++        loader.exec_module(module)
++        return module
+         raise Exception("Unknown module: %s" % pathname)
+ 
+     def _load_pairs(self):
+@@ -207,7 +208,7 @@ class CoverageTestRunner:
+             _coverage.exclude(r"#\s*pragma: no cover")
+             _coverage.start()
+             sys.path.insert(0, os.path.dirname(module.__file__))
+-            imp.reload(module)
++            importlib.reload(module)
+             del sys.path[0]
+             self.disable_logging()
+             suite.run(result)

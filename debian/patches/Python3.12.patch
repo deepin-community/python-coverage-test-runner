@@ -1,0 +1,17 @@
+Description: Replace distutils
+Bug-Debian: https://bugs.debian.org/1058112
+Author: Andreas Tille <tille@debian.org>
+Last-Update: Thu, 22 Feb 2024 11:34:00 +0100
+Forwarded: No upstream repository any more
+
+--- a/setup.py
++++ b/setup.py
+@@ -17,7 +17,7 @@
+ # =*= License: GPL-3+ =*=
+ 
+ 
+-from distutils.core import setup
++from setuptools import setup
+ 
+ import CoverageTestRunner
+ 
