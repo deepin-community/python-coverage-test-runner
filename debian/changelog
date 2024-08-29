@@ -1,3 +1,23 @@
+python-coverage-test-runner (1.13.1-6) unstable; urgency=medium
+
+  * Team upload.
+  * Add missing python3-zombie-imp to Depends.
+
+ -- Andreas Tille <tille@debian.org>  Fri, 23 Feb 2024 16:13:51 +0100
+
+python-coverage-test-runner (1.13.1-5) unstable; urgency=medium
+
+  * Add fake watch file
+  * Move package to DPT
+  * Standards-Version: 4.6.2 (routine-update)
+  * debhelper-compat 13 (routine-update)
+  * Testsuite: autopkgtest-pkg-python (routine-update)
+  * Use python3-zombie-imp to have imp functionality
+    Replace distutils
+    Closes: #1058112
+
+ -- Andreas Tille <tille@debian.org>  Fri, 23 Feb 2024 14:47:31 +0100
+
 python-coverage-test-runner (1.13.1-4) unstable; urgency=medium
 
   * QA upload.
